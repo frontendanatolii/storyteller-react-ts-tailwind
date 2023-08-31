@@ -215,7 +215,7 @@ export function Content() {
   // find index of first element of current page
   const firstIndex = ((currentPage * visibleRows) - visibleRows);
   // find index of last element of current page
-  const lastIndex = (visibleRows * currentPage);
+  const lastIndex = (visibleRows * currentPage) > visibleStories.length ? visibleStories.length : (visibleRows * currentPage);
 
   useEffect(() => {
     setVisibleStories(stories);
@@ -226,6 +226,7 @@ export function Content() {
       <div>
         <SearchStories
           stories={stories}
+          visibleStoriesLength={visibleStories.length}
           setStories={setVisibleStories}
           firstElementOnPage={firstIndex + 1 }
           lastElementOnPage={lastIndex}

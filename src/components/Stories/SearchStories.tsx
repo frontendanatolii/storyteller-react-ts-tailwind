@@ -5,10 +5,11 @@ interface Props {
   setStories: React.Dispatch<React.SetStateAction<Story[]>>,
   stories: Story[],
   lastElementOnPage: number,
-  firstElementOnPage: number
+  firstElementOnPage: number,
+  visibleStoriesLength: number
 }
 
-export function SearchStories({setStories, stories, lastElementOnPage, firstElementOnPage}: Props) {
+export function SearchStories({setStories, stories, lastElementOnPage, firstElementOnPage, visibleStoriesLength}: Props) {
   const [visibleStatus, setVisibleStatus] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
 
@@ -67,7 +68,7 @@ export function SearchStories({setStories, stories, lastElementOnPage, firstElem
             <option value="Draft">Draft</option>
             <option value="Scheduled">Scheduled</option>
           </select>
-          <p className="hidden lg:block">Showing {firstElementOnPage} to {lastElementOnPage} of {stories.length}</p>
+          <p className="hidden lg:block">Showing {firstElementOnPage} to {lastElementOnPage} of {visibleStoriesLength}</p>
         </div>
         <button className='greenButton py-1 px-4 hidden lg:flex'>
           <p className="text-2xl text-center">+</p>
