@@ -2,6 +2,10 @@ import { Story } from "../../types/storyType";
 import { TableItem } from "./TableItem";
 
 export function StoriesTable({ stories, setStories }: { stories: Story[], setStories: React.Dispatch<React.SetStateAction<Story[]>> }) {
+  if (stories.length === 0) {
+    return <p>Any story was found</p>
+  }
+
   return (
     <table className="w-max h-full lg:w-full mt-9">
       <thead className="w-full">
