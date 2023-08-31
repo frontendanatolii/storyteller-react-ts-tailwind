@@ -10,7 +10,7 @@ export function Header({ setIsOpen, isOpen }: Props) {
         <button className="lg:hidden" onClick={() => setIsOpen((prevState) => !prevState)}>
           <img src={isOpen ? './images/closeIcon.svg' : './images/mobileMenu.svg'} alt="menu" />
         </button>
-        <img src="/images/logo.svg" alt="logo" />
+        <img src="/images/Logo.svg" alt="logo" />
       </div>
       <div className="flex items-center gap-4 md:gap-6 lg:gap-8">
         <img src="./images/questionsIcon.svg" alt="questions" className="mt-auto" />
