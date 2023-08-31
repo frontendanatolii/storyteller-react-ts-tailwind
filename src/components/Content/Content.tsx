@@ -210,18 +210,40 @@ const storiesFromServer: Array<Story> = [
 export function Content() {
   const [stories, setStories] = useState(storiesFromServer);
   const [visibleStories, setVisibleStories] = useState(stories);
+  const [visibleRows, setVisibleRows] = useState(5);
+  const [currentPage, setCurrentPage] = useState(1);
+  // find index of first element of current page
+  const firstIndex = ((currentPage * visibleRows) - visibleRows);
+  // find index of last element of current page
+  const lastIndex = (visibleRows * currentPage);
 
   useEffect(() => {
     setVisibleStories(stories);
   }, [stories])
 
   return (
-    <div className='bg-contentBg h-full w-full px-3 lg:px-8 overflow-x-hidden'>
-      <SearchStories stories={stories} setStories={setVisibleStories} />
-      <div className="inline-block lg:block bg-contentBg overflow-x-scroll lg:overflow-x-hidden w-full">
-        <StoriesTable stories={visibleStories} setStories={setStories} />
+    <div className='bg-contentBg h-full w-full px-3 lg:px-8 overflow-x-hidden flex flex-col justify-between'>
+      <div>
+        <SearchStories
+          stories={stories}
+          setStories={setVisibleStories}
+          firstElementOnPage={firstIndex + 1 }
+          lastElementOnPage={lastIndex}
+        />
+        <div className="inline-block lg:block bg-contentBg overflow-x-scroll lg:overflow-x-hidden w-full">
+          <StoriesTable
+            stories={visibleStories.slice(firstIndex, lastIndex)}
+            setStories={setStories}
+          />
+        </div>
       </div>
-      <StoriesFooter />
+      <StoriesFooter
+        setVisibleRows={setVisibleRows}
+        visibleRows={visibleRows}
+        pages={Math.round((visibleStories.length + 1) / visibleRows)}
+        setCurrentPage={setCurrentPage}
+        currentPage={currentPage}
+      />
     </div>
   )
 }

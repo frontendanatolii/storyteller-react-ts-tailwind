@@ -4,9 +4,11 @@ import { Story } from "../../types/storyType";
 interface Props {
   setStories: React.Dispatch<React.SetStateAction<Story[]>>,
   stories: Story[],
+  lastElementOnPage: number,
+  firstElementOnPage: number
 }
 
-export function SearchStories({setStories, stories}: Props) {
+export function SearchStories({setStories, stories, lastElementOnPage, firstElementOnPage}: Props) {
   const [visibleStatus, setVisibleStatus] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
 
@@ -65,7 +67,7 @@ export function SearchStories({setStories, stories}: Props) {
             <option value="Draft">Draft</option>
             <option value="Scheduled">Scheduled</option>
           </select>
-          <p className="hidden lg:block">Showing 1 to 20 of 176</p>
+          <p className="hidden lg:block">Showing {firstElementOnPage} to {lastElementOnPage} of {stories.length}</p>
         </div>
         <button className='greenButton py-1 px-4 hidden lg:flex'>
           <p className="text-2xl text-center">+</p>

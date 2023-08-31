@@ -3,7 +3,7 @@ import { TableItem } from "./TableItem";
 
 export function StoriesTable({ stories, setStories }: { stories: Story[], setStories: React.Dispatch<React.SetStateAction<Story[]>> }) {
   return (
-    <table className="w-max lg:w-full mt-9">
+    <table className="w-max h-full lg:w-full mt-9">
       <thead className="w-full">
         <tr className="">
           <th>
