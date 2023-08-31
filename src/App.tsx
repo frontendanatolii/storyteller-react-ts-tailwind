@@ -1,24 +1,19 @@
-import React from 'react';
-import logo from './logo.svg';
+import { Header } from "./components/Header/Header";
 import './App.css';
+import { Sidebar } from "./components/Sidebar/Sidebar";
+import { Content } from "./components/Content/Content";
+import { useState } from "react";
 
 function App() {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='bg-allpagebg lg:pr-6 overflow-hidden min-h-screen lg:pb-6 '>
+      <Header setIsOpen={setIsOpen} isOpen={isOpen} />
+      <div className='flex flex-row flex-nowrap'>
+        <Sidebar isOpen={isOpen} />
+        <Content />
+      </div>
     </div>
   );
 }
